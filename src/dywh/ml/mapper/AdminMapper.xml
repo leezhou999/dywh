@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dywh.ml.mapper.AdminMapper">
+
+	<!-- 管理员登录后台 -->
+	<select id="adminLogin" parameterType="adminAccount" resultType="adminAccount">
+		select * from t_admin_account where id=#{id} and password=#{password}
+	</select>
+	<!-- 添加新闻 -->
+	<insert id="add" parameterType="news" >
+		insert into t_news(news_title,news_author,news_summary,news_content,module_id,page_id) 
+		values(#{news_title},#{news_author},#{news_summary},#{news_content},#{module_id},#{page_id})
+	</insert>
+	<!-- 添加新闻2 -->
+	<insert id="add2" parameterType="news" >
+		insert into t_news(id,news_title,news_author,news_summary,news_content,module_id,page_id) 
+		values(#{id},#{news_title},#{news_author},#{news_summary},#{news_content},#{module_id},#{page_id})
+	</insert>
+	<!-- 添加资源 -->
+	<insert id="insertResource" parameterType="resource" >
+		insert into t_resource(resource_name,resource_author,resource_location,module_id,resource_type,page_id) 
+		values(#{resource_name},#{resource_author},#{resource_location},#{module_id},#{resource_type},#{page_id})
+	</insert>
+    <!-- 查看资源 -->
+	<select id="queryResource" parameterType="resource" resultType="resource" >
+		select * from t_resource where 1=1
+		<if test="module_id!=0">
+		and module_id=#{module_id}
+		</if>		
+		<if test="id!= 0">
+		and id = #{id}
+		</if>
+		<if test="page_id!=0">
+		and page_id =#{page_id}
+		</if>
+	</select>
+	<!-- 编辑资源 -->
+	<insert id="editResource" parameterType="resource" >
+		update t_resource set 
+		resource_name=#{resource_name},
+		resource_location=#{resource_location}
+		
+		where id=#{id}
+	</insert>
+	<!-- 编辑新闻 -->
+	<insert id="edit" parameterType="news" >
+		update t_news set 
+		news_title=#{news_title},
+		news_summary=#{news_summary},
+		news_content=#{news_content}
+		
+		where id=#{id}
+	</insert>
+	<!-- 删除资源 -->
+	<delete id="delResource" parameterType="resource">
+	delete from t_resource where id=#{id}
+	</delete>
+	<!-- 资源id回显 -->
+	<select id="selectId" parameterType="resource" resultType="resource">
+	SELECT id FROM t_resource WHERE 1=1  ORDER BY resource_time  DESC LIMIT 1
+	</select>
+</mapper>

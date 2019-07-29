@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 控制台sql显示 -->
+	<!-- <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+    </settings> -->
+	<typeAliases>
+		<!-- 为实体配置别名 -->
+		<typeAlias type="dywh.ml.entity.AdminAccount" alias="adminAccount"/>
+		<typeAlias type="dywh.ml.entity.Module" alias="module"/>
+		<typeAlias type="dywh.ml.entity.News" alias="news"/>
+		<typeAlias type="dywh.ml.entity.Resource" alias="resource"/>
+		<typeAlias type="dywh.ml.entity.ResourceType" alias="resourceType"/>
+		
+		
+		
+	</typeAliases>	
+	<mappers>
+		<!-- spring sqlsessionfactory中自动扫描，这里空白即可 -->
+	</mappers>
+	
+</configuration>
